@@ -1,0 +1,6 @@
+/vendor
+/Company
+composer.lock
+.idea/dataSources.xml
+.idea/workspace.xml
+.idea/MVC.iml

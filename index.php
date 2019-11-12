@@ -1,4 +1,5 @@
 <?php
+    use Router\Router;
 /**
  * Created by PhpStorm.
  * User: root
@@ -6,4 +7,11 @@
  * Time: 1:35 PM
  */
 
-    echo 'we doing MVC';
+    require 'vendor/autoload.php';
+
+    $router = new Router();
+    $router->get('/foo','foo');
+    $router->get('/bar','bar');
+    $router->get('/foobar','foobar');
+
+    $router->run();
