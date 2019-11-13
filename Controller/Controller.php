@@ -11,5 +11,8 @@ namespace Controller;
 
 class Controller
 {
-
+    public function run(array $args)
+    {
+        return 'Will add templating info later';
+    }
 }

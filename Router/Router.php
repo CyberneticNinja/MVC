@@ -117,7 +117,6 @@ class Router
 //        $currentRoute = explode("/",$this->getRequestURL());
         $currentRoute = explode("/",$currentRoute);
 
-
         foreach ($this->getRouteList() as $route)
         {
             if(($route[0] == $this->getRequestMethod()) && ($route[1] == '/'.$currentRoute[2]))
@@ -132,16 +131,15 @@ class Router
                     {
                         $args = $_POST;
                     }
-//                    $controller->run($args);
-                    return true;
+                    $controller->run($args);
                 }
                 else
                 {
-                    return false;
+                    throw new \Exception('Route could not be found');
                 }
             }
         }
-        throw new \Exception('Route is missing');
+//        throw new \Exception('Route is missing');
     }
 
     public function run()
@@ -150,7 +148,7 @@ class Router
         $this->setRequestURL($_SERVER['REQUEST_URI']);
         $this->setServerName($_SERVER['SERVER_NAME']);
 
-//        echo $this->getRequestURL().','.$this->getRequestMethod().','.$this->getServerName();
+//       echo 'Request url : '.$this->getRequestURL().' Request method : '.$this->getRequestMethod().' Servername : '.$this->getServerName();
         try {
             $this->matchRoute($this->getRequestURL());
         } catch (\Exception $e) {

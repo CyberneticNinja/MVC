@@ -10,8 +10,9 @@
     require 'vendor/autoload.php';
 
     $router = new Router();
-    $router->get('/foo','foo');
-    $router->get('/bar','bar');
-    $router->get('/foobar','foobar');
+    $router->get('/','Foo');
+    $router->get('/foo','Foo');
+    $router->get('/bar','Bar');
+    $router->get('/foobar','Foobar');
 
     $router->run();
