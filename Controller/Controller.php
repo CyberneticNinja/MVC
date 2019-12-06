@@ -13,6 +13,14 @@ class Controller
 {
     public function run(array $args)
     {
+        if(isset($args))
+        {
+
+        }
+        else
+        {
+
+        }
         return 'Will add templating info later';
     }
 }

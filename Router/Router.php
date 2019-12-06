@@ -114,31 +114,105 @@ class Router
     //matchRoute($currentRoute) returns true if the current route is found, false if otherwise
     public function matchRoute($currentRoute)
     {
-//        $currentRoute = explode("/",$this->getRequestURL());
+
+        //TODO Why do we need to explode currentRoute
+        $currentRouteX = $currentRoute;
         $currentRoute = explode("/",$currentRoute);
 
+
+//        dump($currentRouteX);
+//        dump($this->getRouteList());
+
+        echo '<br/>'.'Routes in Route list'.'<br/>';
+
+        $count =1;
         foreach ($this->getRouteList() as $route)
         {
-            if(($route[0] == $this->getRequestMethod()) && ($route[1] == '/'.$currentRoute[2]))
+            if($route[1] == '')
             {
+                $aRoute = '/'.PAGE_START.'/';
+            }
+            else
+            {
+                $aRoute = '/'.PAGE_START.'/'.$route[1];
+            }
+//            $route[1];
+            if(preg_match('/'.$route[1].'/', $currentRouteX))
+            {
+                echo $currentRouteX.' is the current route '.$count.'</p>';
                 $controller = 'Controller\\'.$route[2];
-
+                dump($controller);
                 if(class_exists($controller))
                 {
-                    $controller = new $controller();
                     $args = array();
-                    if($_POST)
-                    {
-                        $args = $_POST;
-                    }
+                    $controller = new $controller();
                     $controller->run($args);
                 }
-                else
-                {
-                    throw new \Exception('Route could not be found');
-                }
+
             }
+            else
+            {
+                echo $currentRouteX.' is not the current route '.$count.'</p>';
+            }
+
+//            if((count($r)) == (count($currentRoute)))
+//            {
+////                echo '<br/>'.count($r).' is the number of array elements<br/> ';
+//                for($i=0;$i<count($r);$i++)
+//                {
+//                    if($r[$i] == $currentRoute[$i])
+//                    {
+//                        echo $r[$i].' --- '.$currentRoute[$i].'<br/>';
+//                    }
+//
+//                }
+//            }
         }
+
+//        echo '<br/>'.$this->getRouteList()[1][1].'<br/>';
+//        foreach ($this->getRouteList() as $route)
+//        {
+//            if(('/'.PAGE_START.$route[1]) == ($currentRouteX))
+//            {
+//                $controller = 'Controller\\'.$route[2];
+//
+//                if(class_exists($controller))
+//                {
+//                    $controller = new $controller();
+//                    $args = array();
+//                    if($_POST)
+//                    {
+//                        $args = $_POST;
+//                    }
+////                    dump(explode("/",'/'.PAGE_START.$route[1]));
+//                    echo 'we are @'.$currentRouteX.', '.$route[0].'<br/>';
+//                    $controller->run($args);
+//                }
+//                else
+//                {
+//                    throw new \Exception('Route could not be found');
+//                }
+//            }
+////            if(($route[0] == $this->getRequestMethod()) && ($route[1] == '/'.$currentRoute[2]))
+////            {
+////                $controller = 'Controller\\'.$route[2];
+////
+////                if(class_exists($controller))
+////                {
+////                    $controller = new $controller();
+////                    $args = array();
+////                    if($_POST)
+////                    {
+////                        $args = $_POST;
+////                    }
+////                    $controller->run($args);
+////                }
+////                else
+////                {
+////                    throw new \Exception('Route could not be found');
+////                }
+////            }
+//        }
 //        throw new \Exception('Route is missing');
     }
 

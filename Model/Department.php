@@ -2,14 +2,14 @@
 /**
  * Created by PhpStorm.
  * User: sjabrok
- * Date: 11/12/19
- * Time: 3:12 PM
+ * Date: 11/15/19
+ * Time: 1:07 PM
  */
 
 namespace Model;
 
 
-class Model
+class Department
 {
 
 }
