@@ -22,5 +22,6 @@ class Foo extends Controller
     public function run(array $args)
     {
         echo  'We are in Foo controller';
+        echo  '<br/>';
     }
 }
